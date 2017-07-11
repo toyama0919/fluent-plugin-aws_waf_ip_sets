@@ -4,7 +4,7 @@
 
 AWS waf ip_sets automation plugin for fluentd
 
-## Examples
+## Examples(interval one minutes)
 ```
 <match lambda.**>
   @type aws_waf_ip_sets
@@ -19,19 +19,70 @@ AWS waf ip_sets automation plugin for fluentd
 </match>
 ```
 
+## interval
+
+### 1 minutes
+
+```
+time_slice_format %Y%m%d_%H%M
+```
+
+### 1 hours
+
+```
+time_slice_format %Y%m%d%H
+```
+
+### 12 hours
+
+```
+time_slice_format %Y%m%d%p
+```
+
+### 1 days
+
+```
+time_slice_format %Y%m%d
+```
+
+### 1 weeks
+
+```
+time_slice_format %Y%m%w
+```
+
 ## parameter
 
-* ip_address_key
+#### ip_address_key
   * ip address key of record
 
-* dos_threshold
+#### dos_threshold
   * threshold
 
-* ip_set_id
+#### ip_set_id
   * AWS waf ip_set_id
 
-* white_list
+#### white_list
   * white list ip address (comma separated values)
+
+#### ip_set_type
+  * IPV4 or IPV6
+
+#### api_type
+  * waf or waf_regional
+
+#### aws_access_key_id
+  * support iam role.
+  * support environment variables.
+
+#### aws_secret_access_key
+  * support iam role.
+  * support environment variables.
+
+#### aws_region
+  * support iam role.
+  * support environment variables.
+
 
 ## Installation
 ```

@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |gem|
   gem.name          = "fluent-plugin-aws_waf_ip_sets"
-  gem.version       = "0.0.1"
+  gem.version       = "0.0.2"
   gem.summary       = %q{AWS waf ip_sets automation plugin for fluentd}
   gem.description   = %q{AWS waf ip_sets automation plugin for fluentd}
   gem.license       = "MIT"

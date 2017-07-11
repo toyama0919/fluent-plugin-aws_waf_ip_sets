@@ -3,6 +3,9 @@ module Fluent
     Fluent::Plugin.register_output('aws_waf_ip_sets', self)
     config_param :ip_address_key, :string
     config_param :dos_threshold, :integer
+    config_param :aws_access_key_id, :string, :default => nil
+    config_param :aws_secret_access_key, :string, :default => nil
+    config_param :aws_region, :string, :default => nil
     config_param :ip_set_id, :string
     config_param :ip_set_type, :enum, list: [:IPV4, :IPV6], :default => 'IPV4'
     config_param :white_list, :string, :default => '127.0.0.1'
@@ -20,7 +23,11 @@ module Fluent
 
     def start
       super
-      @client =  Aws::WAFRegional::Client.new
+      options = {}
+      options[:region] = @aws_region if @aws_region
+      options[:access_key_id] = @aws_access_key_id if @aws_access_key_id
+      options[:secret_access_key] = @aws_secret_access_key if @aws_secret_access_key
+      Aws::WAFRegional::Client.new(options)
     end
 
     def shutdown

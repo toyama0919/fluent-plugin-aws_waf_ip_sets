@@ -8,6 +8,7 @@ module Fluent
     config_param :aws_region, :string, :default => nil
     config_param :ip_set_id, :string
     config_param :ip_set_type, :enum, list: [:IPV4, :IPV6], :default => 'IPV4'
+    config_param :api_type, :enum, list: [:waf, :waf_regional], :default => 'waf_regional'
     config_param :white_list, :string, :default => '127.0.0.1'
 
     def initialize
@@ -27,7 +28,13 @@ module Fluent
       options[:region] = @aws_region if @aws_region
       options[:access_key_id] = @aws_access_key_id if @aws_access_key_id
       options[:secret_access_key] = @aws_secret_access_key if @aws_secret_access_key
-      Aws::WAFRegional::Client.new(options)
+      @client = if @api_type == 'waf'
+        Aws::WAF::Client.new(options)
+      elsif @api_type == 'waf_regional'
+        Aws::WAFRegional::Client.new(options)
+      else
+        raise Fluent::ConfigError, "unknown @api_type => [#{@api_type}]"
+      end
     end
 
     def shutdown

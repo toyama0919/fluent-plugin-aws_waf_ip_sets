@@ -1,5 +1,6 @@
 # fluent-plugin-aws_waf_ip_sets
 <!-- [![Build Status](https://secure.travis-ci.org/toyama0919/fluent-plugin-aws_waf_ip_sets.png?branch=master)](http://travis-ci.org/toyama0919/fluent-plugin-aws_waf_ip_sets) -->
+[![Gem Version](https://badge.fury.io/rb/fluent-plugin-aws_waf_ip_sets.svg)](http://badge.fury.io/rb/fluent-plugin-aws_waf_ip_sets)
 
 AWS waf ip_sets automation plugin for fluentd
 

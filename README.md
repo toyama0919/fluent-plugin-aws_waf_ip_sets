@@ -51,6 +51,8 @@ time_slice_format %Y%m%d
 time_slice_format %Y%m%w
 ```
 
+* if use long interval, please set a larger `buffer_chunk_limit`.
+
 ## parameter
 
 #### ip_address_key
